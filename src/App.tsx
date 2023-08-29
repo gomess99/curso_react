@@ -1,19 +1,39 @@
 
 import { useState } from "react"
 
+interface InfoAlunoProps{
+  nome: string;
+  idade: string;
+}
+
 export default function App(){
   const [input, setInput] = useState("")
-  const [idade, setIdade] = useState("")
-  const [aluno, setAluno] = useState("Digite no campo a cima")
-  //aqui está send exportando por padrão (usando export default) uma função chamada App. Essa função é o componente principal do aplicativo
+  const [idade, setIdade] = useState("");
+  
+  const [infoAluno, setInfoAluno] = useState<InfoAlunoProps>();
+
+  const [contador, setContador] = useState(0);
 
   function mostrarAluno(){
-    
-    setAluno(input);
+    setInfoAluno({
+      nome: input,
+      idade: idade,
+    });
+  }
+
+  function adicionar(){
+    setContador(valorAtual => valorAtual +1);
+  }
+
+  function diminuir(){
+    if(contador === 0){
+      return;
+    }
+    setContador(valorAtual => valorAtual -1);
   }
 
   return(
-    //O componente 'App' retorna um JSX (JavaScript XML), que é uma sintaxe semelhante ao HTML usado pelo React para descrever a estrutura da interface do usuário. 
+    
     <div>
       <h1>
         Conhecendo useStates
@@ -41,9 +61,16 @@ export default function App(){
 
       <hr />
 
-      <h3>Bem vindo: {aluno}</h3>
+      <h3>Bem vindo: {infoAluno?.nome}</h3>
+      <h3>Sua idade: {infoAluno?.idade}</h3>
+
+      <hr />
+      <br />
+      <h1>Contador com useState</h1>
+
+      <button onClick={adicionar}> + </button> {contador}  <button onClick={diminuir}> - </button>
     </div>
-  )
+  );
 }
 
 
