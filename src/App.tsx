@@ -1,48 +1,54 @@
 
-import { useState } from "react"
 
-interface UserProps{
-  nome: string;
-  cargo: string;
-}
+import './App.css'
 
-export default function App(){
+import logoImg from './assets/logo.png'
 
-  const [user, setUser] = useState <UserProps>({
-    nome: "Visitante",
-    cargo: ""
-  })
-
-  function handleLogin(){
-    setUser({
-      nome: "Sujeito",
-      cargo: "Programador"
-    })
-  }
-
-  function handleLogout(){
-    setUser({
-      nome: "Visitante",
-      cargo: ""
-    })
-  }
-
+function App(){
   return(
     
     <div>
-      <h1>
-        Conhecendo useStates
-      </h1>
-      <button onClick={handleLogin}>
-        Entrar
-      </button>
-      <button onClick={handleLogout}>
-        Sair
-      </button>
-      <h4>{user.nome}</h4>
-      <strong>{user.cargo}</strong>
+      <main className='container'>
+        <img
+        className='logo'
+         src={logoImg}
+         alt="Logo" 
+        />
+        <h1 className='title'>Qual melhor opção?</h1>
+
+        <form className='form'>
+          <label htmlFor="">
+            Alcool (preço por litro):
+          </label>
+          <input
+            type="number" 
+            className='input'
+            placeholder='4,90'
+            min="1"
+            step="0.01"
+            required
+          />
+          <label htmlFor="">
+            Gasolina (preço por litro):
+          </label>
+          <input
+            type="number" 
+            className='input'
+            placeholder='4,90'
+            min="1"
+            step="0.01"
+            required
+          />
+          <input
+           className='button'
+           value="Calculadora"
+           type="submit"
+          />
+        </form>      
+      </main>
     </div>
   );
 }
 
+export default App
 
